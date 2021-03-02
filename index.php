@@ -60,7 +60,7 @@ function format_sum($number)
     }
 
    if ($withrub == true){
-       return $result . '<b class=\"rub\">р</b>';
+       return $result . '<b class=\"rub\">₽</b>';
    }
    else{
        return $result;
