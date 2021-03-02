@@ -47,6 +47,28 @@ $tov_list = [
         'gif' => 'img/lot-6.jpg'
     ]
 ];
+
+function format_sum($number)
+{
+    $withrub = true;
+    $number=ceil($number);
+    if ($number >= 1000) {
+        $result = number_format($number, 0, ".", " ");
+    }
+    else {
+        $result = $number;
+    }
+
+   if ($withrub == true){
+       return $result . '<b class=\"rub\">р</b>';
+   }
+   else{
+       return $result;
+   }
+
+
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -127,7 +149,7 @@ $tov_list = [
                         <div class="lot__state">
                             <div class="lot__rate">
                                 <span class="lot__amount">Стартовая цена</span>
-                                <span class="lot__cost"><?=$lot['price'];?><b class="rub">р</b></span>
+                                <span class="lot__cost"><?=format_sum($lot['price']);?></span>
                             </div>
                             <div class="lot__timer timer">
                                 12:23
