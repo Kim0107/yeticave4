@@ -1,5 +1,6 @@
 <?php
 $is_auth = rand(0, 1);
+$user_avatar = 'img/user.jpg';
 $user_name = 'kim0107'; // укажите здесь ваше имя
 $categories = [
     "Boards"=>"Доски и лыжи",

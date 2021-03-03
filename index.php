@@ -9,7 +9,8 @@ $layout_content = include_template('layout.php',
         'is_auth'=> $is_auth,
         'user_name'=> $user_name,
         'page_content' => $page_content,
-        'categories'=> $categories
+        'categories'=> $categories,
+        'user_avatar' => $user_avatar
 ]);
 print($layout_content);
 ?>
