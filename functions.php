@@ -90,7 +90,4 @@ function include_template($name, $data){
     $result = ob_get_clean();
     return $result;
 }
-
-
-
 ?>
