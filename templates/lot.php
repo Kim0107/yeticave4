@@ -1,5 +1,4 @@
 
-    <main>
         <nav class="nav">
             <ul class="nav__list container">
                 <?php foreach($data_list as $item):?>
@@ -10,14 +9,14 @@
             </ul>
         </nav>
         <section class="lot-item container">
-            <h2><?=$lot['name'];?>></h2>
+            <h2><?=$lot['lot_name'];?></h2>
             <div class="lot-item__content">
                 <div class="lot-item__left">
                     <div class="lot-item__image">
-                        <img src="<?=$lot['gif'];?>" width="730" height="548" alt="Сноуборд">
+                        <img src="<?=$lot['lot_image'];?>" width="730" height="548" alt="Сноуборд">
                     </div>
-                    <p class="lot-item__category">Категория: <span><?=$category[$lotID]['name'];?></span></p>
-                    <p class="lot-item__description"><?=$lot['description']?></p>
+                    <p class="lot-item__category">Категория: <span><?=$categories_list[$lotID]['categ_name'];?></span></p>
+                    <p class="lot-item__description"><?=$lot['lot_descr_text']?></p>
                 </div>
 
                 <div class="lot-item__right">
@@ -28,12 +27,11 @@
                         <div class="lot-item__cost-state">
                             <div class="lot-item__rate">
                                 <span class="lot-item__amount">Текущая цена</span>
-                                <span class="lot-item__cost"><?=format_sum($lot['price']);?></span>
+                                <span class="lot-item__cost"><?=format_sum($lot['lot_start_price']);?></span>
                             </div>
 
                     </div>
                 </div>
             </div>
         </section>
-    </main>
 

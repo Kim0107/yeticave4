@@ -8,13 +8,21 @@ $link = mysqli_connect('127.0.0.1', 'root', '','schema');
 mysqli_set_charset($link, utf8);
 
 $sql = 'select * from categories';
-$result = mysqli_query($link, $sql);
+$categories = mysqli_query($link, $sql);
 
-if($result){
+if($categories){
     echo mysqli_error($link);
 }
-    $categories_list = mysqli_fetch_all($result, MYSQLI_ASSOC);
+$categories_list = mysqli_fetch_all($categories, MYSQLI_ASSOC);
 
+
+$sql2 = 'select * from lots';
+$data_list = mysqli_query($link, $sql2);
+if($data_list){
+    echo mysqli_error($link);
+}
+$data_list = mysqli_fetch_all($data_list, MYSQLI_ASSOC);
+/*
 $categories = [
     "Boards"=>"Доски и лыжи",
     "Mounts"=>"Крепления",
@@ -60,5 +68,5 @@ $data_list = [
         'price' => 5400,
         'gif' => 'img/lot-6.jpg'
     ]
-];
+]; */
 ?>
