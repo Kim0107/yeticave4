@@ -4,7 +4,7 @@ $user_avatar = 'img/user.jpg';
 $user_name = 'kim0107'; // укажите здесь ваше имя
 
 
-$link = mysqli_connect('127.0.0.1', 'root', '','schema');
+$link = mysqli_connect('127.0.0.1', 'root', '','schema2');
 mysqli_set_charset($link, utf8);
 
 $sql = 'select * from categories';

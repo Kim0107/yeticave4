@@ -1,9 +1,9 @@
-INSERT INTO categories set categ_id = "1", categ_name ="Доски и лыжи";
-INSERT INTO categories set categ_id = "2", categ_name ="Крепления";
-INSERT INTO categories set categ_id = "3", categ_name ="Ботинки";
-INSERT INTO categories set categ_id = "4", categ_name ="Одежда";
-INSERT INTO categories set categ_id = "5", categ_name ="Инструменты";
-INSERT INTO categories set categ_id = "6", categ_name ="Разное";
+INSERT INTO categories set categ_id = "Boards", categ_name ="Доски и лыжи";
+INSERT INTO categories set categ_id = "Mounts", categ_name ="Крепления";
+INSERT INTO categories set categ_id = "Boots", categ_name ="Ботинки";
+INSERT INTO categories set categ_id = "Clothes", categ_name ="Одежда";
+INSERT INTO categories set categ_id = "Tools", categ_name ="Инструменты";
+INSERT INTO categories set categ_id = "Other", categ_name ="Разное";
 
 INSERT INTO users set user_id = "12345", user_name = "Дмитрий", user_email = "Dmitry12@mail.ru", user_password = "lublukushatsalo123", user_signup_date = "04.03.2021", user_image = "img/user.png", user_contact = "они точно есть";
 INSERT INTO users set user_id = "21234", user_name = "Сергей", user_email = "Sergey12@mail.ru", user_password = "enoticpoloscun123", user_signup_date = "04.03.2021", user_image = "img/user.png", user_contact = "WOLF FROM PODOLSK STREET";

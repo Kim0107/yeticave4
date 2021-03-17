@@ -1,5 +1,5 @@
 CREATE TABLE categories(
-  categ_id int AUTO_INCREMENT PRIMARY KEY,
+  categ_id varchar(100) PRIMARY KEY,
   categ_name varchar(50)
 );
 create UNIQUE INDEX categ_name on categories(categ_name);
@@ -9,7 +9,7 @@ CREATE TABLE lots(
   lot_user_id int,
   lot_winner_id int,
   lot_name varchar(200),
-  lot_categ_id int,
+  lot_categ_id varchar(100),
   lot_descr_text text,
   lot_image text,
   lot_cr_date datetime,
