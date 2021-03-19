@@ -1,12 +1,12 @@
-<form class="form form--add-lot container form--invalid" action="https://echo.htmlacademy.ru" method="post"> <!-- form--invalid -->
+<form class="form form--add-lot container form--invalid <?= empty($errors)? "" : "form--invalid" ?>" action="add.php" enctype="multipart/form-data" method="post"> <!-- form--invalid -->
     <h2>Добавление лота</h2>
     <div class="form__container-two">
-        <div class="form__item form__item--invalid"> <!-- form__item--invalid -->
+        <div class="form__item <?= empty($errors['lot-name'])? "" : "form__item--invalid"  ?>*> <!-- form__item--invalid -->
             <label for="lot-name">Наименование <sup>*</sup></label>
             <input id="lot-name" type="text" name="lot-name" placeholder="Введите наименование лота">
             <span class="form__error">Введите наименование лота</span>
         </div>
-        <div class="form__item">
+        <div class="form__item" <?= empty($errors['category'])? "" : "form__item--invalid"  ?>*>
             <label for="category">Категория <sup>*</sup></label>
             <select id="category" name="category">
                 <option>Выберите категорию</option>
@@ -17,7 +17,7 @@
             <span class="form__error">Выберите категорию</span>
         </div>
     </div>
-    <div class="form__item form__item--wide">
+    <div class="form__item form__item--wide" <?= empty($errors['message'])? "" : "form__item--invalid"  ?>*>
         <label for="message">Описание <sup>*</sup></label>
         <textarea id="message" name="message" placeholder="Напишите описание лота"></textarea>
         <span class="form__error">Напишите описание лота</span>
