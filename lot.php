@@ -35,5 +35,6 @@ $layout_content = include_template('layout.php',
     'page_content'=>$page_content,
     'categories_list' =>$categories_list
     ]);
+
 print($layout_content);
 ?>
