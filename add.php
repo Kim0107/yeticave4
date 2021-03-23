@@ -4,12 +4,20 @@ require 'data.php';
 if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     $required_fields = ['lot-name', 'category', 'message', 'lot-rate', 'lot-step', 'lot-date'];
     $errors = [];
+    $lot_name = $_POST['lot-name'] ? : '';
+    $category = $_POST['category'] ? : 'Выберите категорию';
+    $message = $_POST['message'] ? : '';
+    $lot_rate = $_POST['lot-rate'] ? : '';
+    $lot_step = $_POST['lot-step'] ? : '';
     foreach ($required_fields as $field) {
         if (empty($_POST[$field])) {
-            $errors[$field] = 'Заполните поле';
+            $errors[$field] = "form__item--invalid";
+            $form_error = 'form--invalid';
+
         }
-    }
-        /*if($field == 'lot-rate'){
+
+
+        if($field == 'lot-rate'){
             if(!filter_var($_POST[$field], FILTER_VALIDATE_INT)){
                 $errors[$field] = 'начальная цена должна быть корректной';
             }
@@ -26,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
             }
         }
     }
-    /*if(isset($_FILES['lotPhotos'])){
+  /*  if(isset($_FILES['lotPhotos'])){
         $finfo = finfo_open(FILEINFO_MINE_TYPE);
         $file_name = $_FILES['lotPhotos']['name'];
         $file_path = __DIR__ . '/img/';
@@ -38,9 +46,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
         $file_url = 'img/' . $file_name;
     }
 */
-    if(!count($errors) == 0){
+    if(count($errors) !== 0){
         $page_content = include_template('add.php',
-        ['errors' => $errors]);
+        ['errors' => $errors,
+            'categories_list' => $categories_list ]);
     } else{
         $lot = [
             "image" => $file_url ? 'img/user.jpg' : '',
@@ -52,16 +61,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
             "description" => $_POST['message'],
             "account_id" => $_SESSION['auth']['account_id']
         ];
+        $page_content = include_template('add.php',
+            [
+                'lot' => $lot,
+                'categories_list' => $categories_list,
+                'data_list' => $data_list,
+                'times_left' => $times_left]);
     }
+
+}
+else{
+    $page_content = include_template('add.php',
+        [
+            'categories_list' => $categories_list,
+            'data_list' => $data_list,
+            'times_left' => $times_left]);
 }
 
-print_r($lot);
 print_r($errors);
-$page_content = include_template('add.php',
-    [
-        'categories_list' => $categories_list,
-        'data_list' => $data_list,
-        'times_left' => $times_left]);
+print_r($lot);
+
+
 $layout_content = include_template('layout.php',
     [   'page_title' => 'Главная страница',
         'is_auth' => $is_auth,

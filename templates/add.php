@@ -1,31 +1,23 @@
+
 <nav class="nav">
     <ul class="nav__list container">
-        <li class="nav__item">
-            <a href="all-lots.html">Доски и лыжи</a>
-        </li>
-        <li class="nav__item">
-            <a href="all-lots.html">Крепления</a>
-        </li>
-        <li class="nav__item">
-            <a href="all-lots.html">Ботинки</a>
-        </li>
-        <li class="nav__item">
-            <a href="all-lots.html">Одежда</a>
-        </li>
-        <li class="nav__item">
-            <a href="all-lots.html">Инструменты</a>
-        </li>
-        <li class="nav__item">
-            <a href="all-lots.html">Разное</a>
-        </li>
+
+
+            <!--заполните этот список из массива категорий-->
+            <?php foreach ($categories_list as $item): ?>
+                <li class="promo__item promo__item--boards">
+                    <a class="promo__link" href="pages/all-lots.html"><?=$item['categ_name'];?></a>
+                </li>
+            <?php endforeach; ?>
+
     </ul>
 </nav>
-<form class="form form--add-lot container form--invalid <?= empty($errors)? "" : "form--invalid" ?>" action="add.php" enctype="multipart/form-data" method="post"> <!-- form--invalid -->
+<form class="form form--add-lot container  <?=$form_error; ?>" action="add.php" enctype="multipart/form-data" method="post"> <!-- form--invalid -->
     <h2>Добавление лота</h2>
     <div class="form__container-two">
-        <div class="form__item <?= empty($errors['lot-name'])? "" : "form__item--invalid"  ?>"> <!-- form__item--invalid -->
+        <div class="form__item <?=$name_error; ?>"> <!-- form__item--invalid -->
             <label for="lot-name">Наименование <sup>*</sup></label>
-            <input id="lot-name" type="text" name="lot-name" placeholder="Введите наименование лота">
+            <input id="lot-name" type="text" name="lot-name" placeholder="Введите наименование лота" value="<?=$lot_name; ?>" required>
             <span class="form__error">Введите наименование лота</span>
         </div>
         <div class="form__item <?= empty($errors['category'])? "" : "form__item--invalid"  ?>">
@@ -41,8 +33,8 @@
     </div>
     <div class="form__item form__item--wide <?= empty($errors['message'])? "" : "form__item--invalid"?>">
         <label for="message">Описание <sup>*</sup></label>
-        <textarea id="message" name="message" placeholder="Напишите описание лота"></textarea>
-        <span class="form__error"><?php if(isset($errors['message'])) {print($errors['message']);}?></span>
+        <textarea id="message" name="message" placeholder="Напишите описание лота" ></textarea>
+        <span class="form__error">Напишите описание лота</span>
     </div>
     <div class="form__item form__item--file">
         <label>Изображение <sup>*</sup></label>
@@ -73,3 +65,4 @@
     <span class="form__error form__error--bottom">Пожалуйста, исправьте ошибки в форме.</span>
     <button type="submit" class="button">Добавить лот</button>
 </form>
+
