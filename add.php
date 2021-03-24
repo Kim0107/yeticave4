@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
             }
         }
     }
-  /*  if(isset($_FILES['lotPhotos'])){
+    if(isset($_FILES['lotPhotos'])){
         $finfo = finfo_open(FILEINFO_MINE_TYPE);
         $file_name = $_FILES['lotPhotos']['name'];
         $file_path = __DIR__ . '/img/';
@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
         }
         $file_url = 'img/' . $file_name;
     }
-*/
+
     if(count($errors) !== 0){
         $page_content = include_template('add.php',
         ['errors' => $errors,
@@ -67,6 +67,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
                 'categories_list' => $categories_list,
                 'data_list' => $data_list,
                 'times_left' => $times_left]);
+        $con = mysqli_connect('127.0.0.1', 'root', '','schema2');
+        mysqli_set_charset($con,'utf8');
+        $sql = "SELECT categ_id FROM categories WHERE categ_name='{$lot['category']}' ";
+        $result = mysqli_query($con,$sql);
+        $lot['category'] = mysqli_fetch_assoc($result)['categ_id'];
+
+        $sql = "INSERT INTO lots(lot_user_id, lot_winner_id, lot_name, lot_categ_id, lot_descr_text, lot_image, lot_cr_date,  lot_comp_date, lot_start_price, lot_step)
+        VALUE ('12345', '12345','{$lot['name']}', '{$lot['category']}', '{$lot['description']}', '{$lot['image']}', '01.01.2001',  '{$lot['timer']}',  '{$lot['start_price']}', '{$lot['rate']}')";
+        $result = mysqli_query($con, $sql);
+        if(!$result)
+            echo mysqli_error($con);
     }
 
 }
@@ -77,9 +88,6 @@ else{
             'data_list' => $data_list,
             'times_left' => $times_left]);
 }
-
-print_r($errors);
-print_r($lot);
 
 
 $layout_content = include_template('layout.php',

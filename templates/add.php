@@ -12,12 +12,12 @@
 
     </ul>
 </nav>
-<form class="form form--add-lot container  <?=$form_error; ?>" action="add.php" enctype="multipart/form-data" method="post"> <!-- form--invalid -->
+<form class="form form--add-lot container  <?= empty($errors)? "" : "form--invalid" ?>" action="add.php" enctype="multipart/form-data" method="post"> <!-- form--invalid -->
     <h2>Добавление лота</h2>
     <div class="form__container-two">
-        <div class="form__item <?=$name_error; ?>"> <!-- form__item--invalid -->
+        <div class="form__item <?= empty($errors['lot-name'])? "" : "form__item--invalid"  ?>"> <!-- form__item--invalid -->
             <label for="lot-name">Наименование <sup>*</sup></label>
-            <input id="lot-name" type="text" name="lot-name" placeholder="Введите наименование лота" value="<?=$lot_name; ?>" required>
+            <input id="lot-name" type="text" name="lot-name" placeholder="Введите наименование лота" ">
             <span class="form__error">Введите наименование лота</span>
         </div>
         <div class="form__item <?= empty($errors['category'])? "" : "form__item--invalid"  ?>">
@@ -38,8 +38,14 @@
     </div>
     <div class="form__item form__item--file">
         <label>Изображение <sup>*</sup></label>
+        <div class ="preview">
+            <button class = "preview__remove" type = "button">х</button>
+            <div class="preview__img">
+                <img scr="img/avatar.jpg" width = "113" height="113" alt = "Изображение лота"
+            </div>
+        </div>
         <div class="form__input-file">
-            <input class="visually-hidden" type="file" id="lot-img" value="">
+            <input class="visually-hidden" type="file" id="lot-img" value="" name="lotPhoto">
             <label for="lot-img">
                 Добавить
             </label>
