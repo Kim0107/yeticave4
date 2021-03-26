@@ -23,7 +23,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $editname = $_POST['email'];
         foreach ($users as $user) {
             if ($user['user_email'] == $editname) {
-                print($user['user_email']);
                 $logname = true;
                 $pass = $_POST['password'];
                 if ($user['user_password'] == $pass) {
@@ -56,9 +55,6 @@ else {
 
 $layout_content = include_template('layout.php',
     [   'page_title' => 'Главная страница',
-        'is_auth' => $is_auth,
-        'user_name'=> $user_name,
-        'user_avatar'=>$user_avatar,
         'page_content'=>$page_content,
         'categories_list' =>$categories_list
     ]);

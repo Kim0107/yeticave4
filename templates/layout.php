@@ -23,12 +23,15 @@
             <a class="main-header__add-lot button" href="add.php">Добавить лот</a>
 
             <nav class="user-menu">
-                <?php if($is_auth==1): ?>
+                <?php if(!empty($_SESSION['is_auth'])): ?>
                     <div class="user-menu__image">
-                        <img src="<?=$user_avatar;?>" width="40" height="40" alt="Пользователь">
+                        <img src="<?=$_SESSION['is_auth']['user_image']?>" width="40" height="40" alt="Пользователь">
                     </div>
                     <div class="user-menu__logged">
-                        <p> <?php echo($user_name); ?> </p>
+                        <p> <?=$_SESSION['is_auth']['user_name']?> </p>
+                    </div>
+                    <div class="user-menu__logged">
+                        <a href="logout.php">Выйти</a>
                     </div>
                 <?php else: ?>
                     <ul class="user-menu__list">
@@ -38,8 +41,8 @@
                         <li class="user-menu__item">
                             <a href="login.php">Вход</a>
                         </li>
+
                     </ul>
-                    <!-- здесь должен быть PHP код для показа меню и данных пользователя -->
                 <?php endif; ?>
             </nav>
         </div>
